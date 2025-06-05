@@ -16,6 +16,7 @@ console.log('Environment Variables:', {
   REACT_APP_FIREBASE_MEASUREMENT_ID: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || 'undefined'
 });
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -30,13 +31,16 @@ const firebaseConfig = {
 // Debug log for Firebase config
 console.log('Firebase Config:', {
   ...firebaseConfig,
-  apiKey: firebaseConfig.apiKey ? '***' : undefined
+  apiKey: '***' // Mask the API key for security
 });
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const database = getDatabase(app);
-export const storage = getStorage(app);
-export const analytics = getAnalytics(app);
 
-export default app; 
+// Initialize Firebase services
+const auth = getAuth(app);
+const database = getDatabase(app);
+const storage = getStorage(app);
+const analytics = getAnalytics(app);
+
+export { app, auth, database, storage, analytics }; 
